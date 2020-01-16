@@ -4,11 +4,38 @@ const mkdirp = require('mkdirp');
 
 const { PNG } = require('pngjs');
 const pixelmatch = require('pixelmatch');
+const crypto = require('crypto');
+
+function drawBlackImage(width, height, name) {
+  const newfile = new PNG({ width, height });
+
+  // eslint-disable-next-line no-plusplus
+  for (let y = 0; y < newfile.height; y++) {
+    // eslint-disable-next-line no-plusplus
+    for (let x = 0; x < newfile.width; x++) {
+      const idx = (newfile.width * y + x) << 2; // eslint-disable-line no-bitwise
+      newfile.data[idx] = 0;
+      newfile.data[idx + 1] = 0;
+      newfile.data[idx + 2] = 0;
+      newfile.data[idx + 3] = 255;
+    }
+  }
+
+  const buff = PNG.sync.write(newfile);
+  fs.writeFileSync(name, buff);
+}
+
+function checksum(str, algorithm, encoding) {
+  return crypto
+    .createHash(algorithm || 'md5')
+    .update(str, 'utf8')
+    .digest(encoding || 'hex');
+}
 
 // TODO: allow user to define/update
 const SNAPSHOT_DIRECTORY =
   process.env.SNAPSHOT_DIRECTORY ||
-  path.join(__dirname, '..', '..', '..', 'cypress', 'snapshots');
+  path.join(__dirname, '..', 'cypress', 'snapshots');
 
 function compareSnapshotsPlugin(args) {
   return new Promise((resolve, reject) => {
@@ -32,7 +59,6 @@ function compareSnapshotsPlugin(args) {
         `${args.fileName}.png`
       ),
     };
-
     const diffFolder = path.join(SNAPSHOT_DIRECTORY, 'diff');
     if (!fs.existsSync(diffFolder)) {
       mkdirp(diffFolder, (err) => {
@@ -56,6 +82,17 @@ function compareSnapshotsPlugin(args) {
       .pipe(new PNG())
       .on('parsed', function() {
         const imgActual = this;
+        if (!fs.existsSync(options.expectedImage)) {
+          drawBlackImage(
+            imgActual.width,
+            imgActual.height,
+            options.expectedImage
+          );
+          if (!fs.existsSync(options.expectedImage)) {
+            throw new Error('can not create base image');
+          }
+        }
+
         fs.createReadStream(options.expectedImage)
           .pipe(new PNG())
           .on('parsed', function() {
@@ -65,16 +102,30 @@ function compareSnapshotsPlugin(args) {
               height: imgActual.height,
             });
 
-            const mismatchedPixels = pixelmatch(
-              imgActual.data,
-              imgExpected.data,
-              diff.data,
-              imgActual.width,
-              imgActual.height,
-              { threshold: 0.1 }
-            );
+            let mismatchedPixels = 0;
+            if (
+              checksum(imgActual.data, 'sha1') !==
+              checksum(imgExpected.data, 'sha1')
+            ) {
+              mismatchedPixels = imgActual.width * imgActual.height;
 
-            diff.pack().pipe(fs.createWriteStream(options.diffImage));
+              if (
+                imgActual.width === imgExpected.width &&
+                imgActual.height === imgExpected.height
+              ) {
+                mismatchedPixels = pixelmatch(
+                  imgActual.data,
+                  imgExpected.data,
+                  diff.data,
+                  imgActual.width,
+                  imgActual.height,
+                  { threshold: 0.1 }
+                );
+                diff.pack().pipe(fs.createWriteStream(options.diffImage));
+              } else {
+                drawBlackImage(10, 10, options.diffImage);
+              }
+            }
 
             resolve({
               mismatchedPixels,

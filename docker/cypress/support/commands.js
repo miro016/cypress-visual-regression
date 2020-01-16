@@ -2,17 +2,12 @@ const compareSnapshotCommand = require('../../dist/command.js');
 
 function compareSnapshotTestCommand() {
   Cypress.Commands.add('compareSnapshotTest', { prevSubject: 'optional' }, (subject, name, errorThreshold = 0.00) => {
-    // get image title from the 'type' environment variable
-    let title = 'actual';
-    if(Cypress.env('type') === 'base') {
-    title = 'base';
-  }
-
+   
   // take snapshot
   if (subject) {
-    cy.get(subject).screenshot(`${name}-${title}`);
+    cy.get(subject).screenshot(`${name}`);
   } else {
-    cy.screenshot(`${name}-${title}`);
+    cy.screenshot(`${name}`);
   }
 
   // run visual tests
