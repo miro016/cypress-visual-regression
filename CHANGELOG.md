@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 
 This change log follows the format documented in [Keep a CHANGELOG](http://keepachangelog.com/).
 
+## v1.0.6
+
+### Changed
+
+- Snapshot images does not have postfix (-actual, -base, -diff) - context is based on file location in folder
+
 ## v1.0.5
 
 ### Changed
