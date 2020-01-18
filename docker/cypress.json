@@ -1,5 +1,9 @@
 {
   "screenshotsFolder": "cypress/snapshots/actual",
   "trashAssetsBeforeRuns": true,
+  "env": {
+    "type": "actual",
+    "missingBase": "strict"
+  },
   "video": false
 }

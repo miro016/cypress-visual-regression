@@ -5,16 +5,11 @@ function compareSnapshotCommand() {
     'compareSnapshot',
     { prevSubject: 'optional' },
     (subject, name, errorThreshold = 0.0) => {
-      let title = 'actual';
-      if (Cypress.env('type') === 'base') {
-        title = 'base';
-      }
-
       // take snapshot
       if (subject) {
-        cy.get(subject).screenshot(`${name}-${title}`);
+        cy.get(subject).screenshot(`${name}`);
       } else {
-        cy.screenshot(`${name}-${title}`);
+        cy.screenshot(`${name}`);
       }
 
       // run visual tests
@@ -22,6 +17,7 @@ function compareSnapshotCommand() {
         const options = {
           fileName: name,
           specDirectory: Cypress.spec.name,
+          strict: Cypress.env('missingBase') !== 'create',
         };
         cy.task('compareSnapshotsPlugin', options).then((results) => {
           if (results.percentage > errorThreshold) {

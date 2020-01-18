@@ -26,3 +26,16 @@ script:
 
 after_script:
   - docker-compose down
+
+jobs:
+  include:
+    - stage: npm release
+      branches:
+        only:
+        - master
+      node_js: "13"
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        api_key: $NPM_API_KEY
+        on: deploy-npm-release

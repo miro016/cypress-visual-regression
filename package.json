@@ -1,12 +1,13 @@
 {
-  "name": "cypress-visual-regression",
-  "version": "1.0.5",
+  "name": "cypress-visual-testing",
+  "version": "1.0.0",
   "description": "Module for adding visual regression testing to Cypress",
   "repository": "https://github.com/mjhea0/cypress-visual-regression",
-  "author": "Michael Herman <michael@mherman.org>",
+  "author": "Miroslav Petro <>",
   "license": "MIT",
   "keywords": [
-    "visual regression",
+    "testing",
+    "visual testing",
     "image diff",
     "cypress"
   ],
