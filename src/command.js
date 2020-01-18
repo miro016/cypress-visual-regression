@@ -17,6 +17,7 @@ function compareSnapshotCommand() {
         const options = {
           fileName: name,
           specDirectory: Cypress.spec.name,
+          strict: Cypress.env('missingBase') !== 'create',
         };
         cy.task('compareSnapshotsPlugin', options).then((results) => {
           if (results.percentage > errorThreshold) {

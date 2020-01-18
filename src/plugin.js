@@ -25,6 +25,13 @@ function drawBlackImage(width, height, name) {
   fs.writeFileSync(name, buff);
 }
 
+function copyImage(image, name) {
+  const dst = new PNG({ width: image.width, height: image.height });
+  image.bitblt(dst, 0, 0, image.width, image.height, 0, 0);
+  const buff = PNG.sync.write(dst);
+  fs.writeFileSync(name, buff);
+}
+
 function checksum(str, algorithm, encoding) {
   return crypto
     .createHash(algorithm || 'md5')
@@ -83,11 +90,19 @@ function compareSnapshotsPlugin(args) {
       .on('parsed', function() {
         const imgActual = this;
         if (!fs.existsSync(options.expectedImage)) {
-          drawBlackImage(
-            imgActual.width,
-            imgActual.height,
-            options.expectedImage
-          );
+          if (options.strict) {
+            drawBlackImage(
+              imgActual.width,
+              imgActual.height,
+              options.expectedImage
+            );
+          } else {
+            copyImage(imgActual, options.expectedImage);
+            // fs.readFileSync(options.actualImage);
+            // const data = fs.readFileSync(options.expectedImage);
+            // imgActual = PNG.sync.read(data);
+          }
+
           if (!fs.existsSync(options.expectedImage)) {
             throw new Error('can not create base image');
           }

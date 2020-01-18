@@ -80,8 +80,15 @@ describe('Visual Regression Example', () => {
       cy.visit('localhost:80/01.html');
       cy.get('H1').contains('Hello, World').should('have.length',1)
     } else{
-      cy.visit('localhost:80/01.html');
-      cy.get('H1').contains('Hello, World').compareSnapshotTest('hello').should('be.false');
+      if(Cypress.env('type') === 'strict')
+      {
+        cy.visit('localhost:80/01.html');
+        cy.get('H1').contains('Hello, World').compareSnapshotTest('helloStrict').should('be.false');
+      } else {
+        cy.visit('localhost:80/01.html');
+        cy.get('H1').contains('Hello, World').compareSnapshotTest('helloCreate').should('be.true');
+      }
+      
     }
   })
 });

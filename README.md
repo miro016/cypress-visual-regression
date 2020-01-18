@@ -1,8 +1,8 @@
 # Cypress Visual Regression
 
-[![NPM](https://nodei.co/npm/cypress-visual-regression.png)](https://nodei.co/npm/cypress-visual-regression/)
+[![NPM](https://nodei.co/npm/cypress-visual-regression.png)](https://nodei.co/npm/cypress-visual-testing/)
 
-[![Build Status](https://travis-ci.org/mjhea0/cypress-visual-regression.svg?branch=master)](https://travis-ci.org/mjhea0/cypress-visual-regression)
+[![Build Status](https://travis-ci.org/miro016/cypress-visual-regression.svg?branch=master)](https://travis-ci.org/miro016/cypress-visual-regressio)
 
 Module for adding visual regression testing to [Cypress](https://www.cypress.io/).
 
@@ -21,7 +21,8 @@ Add the following config to your *cypress.json* file:
   "screenshotsFolder": "cypress/snapshots/actual",
   "trashAssetsBeforeRuns": true,
   "env": {
-    "type": "actual"
+    "type": "actual",
+    "missingBase": "strict"
   }
 }
 ```

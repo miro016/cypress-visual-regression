@@ -13,6 +13,7 @@ This change log follows the format documented in [Keep a CHANGELOG](http://keepa
 - Diff image is created only if actual image is different from base
 - Diff image is created if base does not exists (default base is created)
 - Diff test is not run, when base and actual images does have different width or height
+- Option to show fail/pass when base is not defined
 
 ## Origin
 
