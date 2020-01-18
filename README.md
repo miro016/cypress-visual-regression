@@ -1,4 +1,4 @@
-# Cypress Visual Regression
+# Cypress Visual Testing
 
 [![NPM](https://nodei.co/npm/cypress-visual-testing.png)](https://nodei.co/npm/cypress-visual-testing/)
 
@@ -11,7 +11,7 @@ Module for adding visual regression testing to [Cypress](https://www.cypress.io/
 Install:
 
 ```sh
-$ npm install cypress-visual-regression
+$ npm install cypress-visual-testing
 ```
 
 Add the following config to your *cypress.json* file:
@@ -30,7 +30,7 @@ Add the following config to your *cypress.json* file:
 Add the plugin to *cypress/plugins/index.js*:
 
 ```javascript
-const getCompareSnapshotsPlugin = require('cypress-visual-regression/dist/plugin');
+const getCompareSnapshotsPlugin = require('cypress-visual-testing/dist/plugin');
 
 module.exports = (on) => {
   getCompareSnapshotsPlugin(on);
@@ -40,7 +40,7 @@ module.exports = (on) => {
 Add the command to *cypress/support/commands.js*:
 
 ```javascript
-const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+const compareSnapshotCommand = require('cypress-visual-testing/dist/command');
 
 compareSnapshotCommand();
 ```
@@ -66,7 +66,7 @@ You can target a single HTML element as well:
 cy.get('#my-header').compareSnapshot('just-header')
 ```
 
-> Looking for more examples? Review [docker/cypress/integration/main.spec.js](https://github.com/mjhea0/cypress-visual-regression/blob/master/docker/cypress/integration/main.spec.js).
+> Looking for more examples? Review [docker/cypress/integration/main.spec.js](https://github.com/miro016/cypress-visual-testing/blob/master/docker/cypress/integration/main.spec.js).
 
 
 Take the base images:
