@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/cypress-visual-regression.png)](https://nodei.co/npm/cypress-visual-testing/)
 
-[![Build Status](https://travis-ci.org/miro016/cypress-visual-regression.svg?branch=master)](https://travis-ci.org/miro016/cypress-visual-regressio)
+[![Build Status](https://travis-ci.org/miro016/cypress-visual-testing.svg?branch=master)](https://travis-ci.org/miro016/cypress-visual-testing)
 
 Module for adding visual regression testing to [Cypress](https://www.cypress.io/).
 
