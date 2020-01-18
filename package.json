@@ -6,7 +6,8 @@
   "author": "Miroslav Petro <>",
   "license": "MIT",
   "keywords": [
-    "visual regression",
+    "testing",
+    "visual testing",
     "image diff",
     "cypress"
   ],
