@@ -1,6 +1,6 @@
 # Cypress Visual Regression
 
-[![NPM](https://nodei.co/npm/cypress-visual-regression.png)](https://nodei.co/npm/cypress-visual-testing/)
+[![NPM](https://nodei.co/npm/cypress-visual-testing.png)](https://nodei.co/npm/cypress-visual-testing/)
 
 [![Build Status](https://travis-ci.org/miro016/cypress-visual-testing.svg?branch=master)](https://travis-ci.org/miro016/cypress-visual-testing)
 
