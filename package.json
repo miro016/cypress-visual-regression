@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Module for adding visual regression testing to Cypress",
   "repository": "https://github.com/mjhea0/cypress-visual-regression",
-  "author": "Miroslav Petro <>",
+  "author": "Miroslav Petro <miroslav.petro016@gmail.com>",
   "license": "MIT",
   "keywords": [
     "testing",
