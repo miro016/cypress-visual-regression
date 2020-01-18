@@ -1,7 +1,8 @@
 {
   "dependencies": {
-    "cypress-visual-testing": "1.0.0",
-    "pixelmatch": "5.1.0",
-    "pngjs": "3.4.0"
+    "cypress": "^3.6.1",
+    "mkdirp": "^0.5.1",
+    "pixelmatch": "^5.1.0",
+    "pngjs": "^3.4.0"
   }
 }
