@@ -21,13 +21,11 @@ after_script:
 - docker-compose down
 jobs:
   include:
-  - stage: build
-    language: node_js
-    node_js: '13'
-    script: npm run prepublish
   - stage: npm release
     node_js: '13'
     script: echo "Deploying to npm ..."
+    script: npm install
+    script: npm run prepublish
     deploy:
       provider: npm
       cleanup: true
