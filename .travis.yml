@@ -22,6 +22,7 @@ after_script:
 jobs:
   include:
   - stage: npm release
+    language: node_js
     node_js: '13'
     script: bash build.sh
     deploy:
