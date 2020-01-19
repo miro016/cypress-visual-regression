@@ -34,6 +34,7 @@ jobs:
       script: echo "Deploying to npm ..."
       deploy:
         provider: npm
+        email: "miroslav.petro016@gmail.com"
         api_key: $NPM_API_KEY
         on:
           branches:
