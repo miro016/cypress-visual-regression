@@ -23,7 +23,7 @@ jobs:
   include:
   - stage: npm release
     node_js: '13'
-    script: echo "Deploying to npm ..."
+    script: bash build.sh
     deploy:
       provider: npm
       cleanup: true
