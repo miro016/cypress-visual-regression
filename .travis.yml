@@ -21,12 +21,17 @@ after_script:
 - docker-compose down
 jobs:
   include:
+  - stage: build
+    language: node_js
+    node_js: '13'
+    script: npm run prepublish
   - stage: npm release
     node_js: '13'
     script: echo "Deploying to npm ..."
     deploy:
       provider: npm
       cleanup: true
+      edge: true
       email: miroslav.petro016@gmail.com
       api_key:
         secure: LTrqWWB6pLVeSLySKulbah2kNs1couMMUGbPzlSb9O93+UvASEJczIHH8ysrbv2hkV4A6Zt+SwzrqxAqEoFZ+VC+bMdGLI7NR9jpAsjZ3KAKkyUf2Nyb0X3KgpzeExwWYt+d/FcCk7w0iDvJlQR+1maTnEz3iFHBpyiIMGL4AfMx50+br16WV7i0OxsCGpdsUkwWHwbmIGm5e+cCcIsShRnQO1QHgDUAbA6/BHIihB6xK7wXTiDm5CVRXeMiKldq3TYsW9JfaTUOjZZDk2oBteKHmFwKXIhz0telNLLE8cccN1zNsmurMdieF3d2O8nxyAwZEuWRNR2qsXWQbuS2Bety2yTVxOZBtLsBJFUkd0kY5GLdInMBzSww7Pe4HYlj0vjMNR8j4/5gwy8Bnwe+YtZ2EYzercedEJtiryaM8zRCgoJBhbo4arcf//pbWiPmozAgCIVbJYs4tI4scmWkEIZPzfujGkpebS4bZHfw66xpB0+48JGu7ZkGpQrlIc8Cb1T9hz2b9Kpyh0XIcOnrWjGPoYtfIpl2g6Z2e+kFX132KYp+/xI3G0JZNfuYbno7dfDDqI9iAXbHZNzro5Gf4fTn8/6gvIKiw9H2njr1HvV3aY7ELv8yKWzlg8WMWxr7f/k8u6qsT659s/GTVuvoN1Xto9hI7DHXexkiejmzLNM=
