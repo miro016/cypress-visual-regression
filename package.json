@@ -17,7 +17,7 @@
   "scripts": {
     "test": "./node_modules/.bin/cypress run --env type=actual",
     "base": "./node_modules/.bin/cypress run --env type=base --config screenshotsFolder=cypress/snapshots/base",
-    "prepublish": "npm run lint && npm run prettier:check && npm run build",
+    "prep": "npm run lint && npm run prettier:check && npm run build",
     "lint": "./node_modules/.bin/eslint src/**",
     "prebuild": "./node_modules/.bin/rimraf dist",
     "build": "./node_modules/.bin/babel src --out-dir dist",

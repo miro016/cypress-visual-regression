@@ -24,7 +24,6 @@ jobs:
   - stage: npm release
     language: node_js
     node_js: '13'
-    script: bash build.sh
     deploy:
       provider: npm
       cleanup: true
