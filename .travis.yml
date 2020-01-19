@@ -5,8 +5,6 @@ node_js:
   - 12
   - 11
   - 10
-  - 9
-  - 8
 
 services:
   - docker
@@ -35,7 +33,7 @@ jobs:
       deploy:
         provider: npm
         email: "miroslav.petro016@gmail.com"
-        api_key: $NPM_API_KEY
+        api_key: ${NPM_API_KEY}
         on:
           branches:
             only:
