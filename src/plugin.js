@@ -42,7 +42,7 @@ function checksum(str, algorithm, encoding) {
 // TODO: allow user to define/update
 const SNAPSHOT_DIRECTORY =
   process.env.SNAPSHOT_DIRECTORY ||
-  path.join(__dirname, '..', 'cypress', 'snapshots');
+  path.join(__dirname, '..', '..', '..', 'cypress', 'snapshots');
 
 function compareSnapshotsPlugin(args) {
   return new Promise((resolve, reject) => {
