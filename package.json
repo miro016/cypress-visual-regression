@@ -1,6 +1,6 @@
 {
   "name": "cypress-visual-testing",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Module for adding visual regression testing to Cypress",
   "repository": "https://github.com/miro016/cypress-visual-testing",
   "author": "Miroslav Petro <miroslav.petro016@gmail.com>",
